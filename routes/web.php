@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TasksController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,12 +14,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/tasks', 'TasksController@index');
+Route::get('/tasks', [TasksController::class, 'index']);
 // function () {
 //     return view('tasks.index');
 // }
 
-Route::get('/tasks/create',  'TasksController@create');
+Route::get('/tasks/create',  [TasksController::class, 'create']);
 
-Route::get('/',  'TasksController@index');
+Route::get('/',  [TasksController::class, 'index']);
+
+Route::post('/tasks',  [TasksController::class, 'store']);
+
 
