@@ -20,13 +20,10 @@
 
         <div class="form-group">
             <label for="project">Project</label>
-            <select class="form-control" id="project" name="project_id">
-                <option value="1">3</option>
-                <option value="2">4</option>
-                <option value="3">2</option>
-                {{-- @foreach ($projects as $project)
+            <select class="form-control" id="project_id" name="project_id" required>
+                @foreach ($projects as $project)
                 <option value="{{ $project->id }}">{{ $project->name }}</option>
-            @endforeach --}}
+            @endforeach
             </select>
         </div>
 

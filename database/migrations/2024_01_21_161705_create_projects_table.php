@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tasks', function (Blueprint $table) {
-            $table->foreign('project_id')->references('id')->on('projects')->onDelete('set null')->before('2024_01_21_161705_create_projects_table');;
+        Schema::create('projects', function (Blueprint $table) {
             $table->id();
-            $table->string("name");
-            $table->integer("priority");
-            $table->unsignedBigInteger('project_id')->nullable();
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -26,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tasks');
+        Schema::dropIfExists('projects');
     }
 };

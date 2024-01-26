@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Project;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -18,5 +20,22 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+
+        $projects = [
+            [
+                'name' => 'Project 1',
+            ],
+            [
+                'name' => 'Project 2',
+            ],
+            [
+                'name' => 'Project 3',
+            ],
+        ];
+
+        // Insert the projects into the database
+        foreach ($projects as $project) {
+            Project::create($project);
+        }
     }
 }
