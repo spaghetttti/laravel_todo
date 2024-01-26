@@ -2,13 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Task;
 use Illuminate\Http\Request;
 
 class TasksController extends Controller
 {
     public function index()
     {
-        return  view('tasks.index');
+        $tasks = Task::all();
+
+        return  view('tasks.index',[
+           'tasks' => $tasks
+        ]);
     }
 
     public function create()
@@ -17,6 +22,11 @@ class TasksController extends Controller
     }
 
     public function store() {
-        return request()->all();
+        $task = Task::create([
+            'name' => request('name'),
+            'priority'=> request('priority'),
+        ]);
+
+        return redirect('/');
     }
 }

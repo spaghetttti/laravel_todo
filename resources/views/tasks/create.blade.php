@@ -5,8 +5,8 @@
         @csrf
 
         <div class="form-group">
-            <label for="taskName">Task Name</label>
-            <input type="text" class="form-control" id="taskName" name="task_name" required>
+            <label for="name">Task Name</label>
+            <input type="text" class="form-control" id="name" name="name" required>
         </div>
 
         <div class="form-group">
