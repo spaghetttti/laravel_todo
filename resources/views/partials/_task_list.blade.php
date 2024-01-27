@@ -21,7 +21,7 @@
                     @if (!$task->isCompleted())
                         <div class="d-flex align-items-center gap-2">
                             <a href="/tasks/{{ $task->id }}" class="btn btn-primary">✍️ Edit</a>
-                            <form class="p-0 m-0"  action="/tasks/complete/{{ $task->id }}" method="POST">
+                            <form class="p-0 m-0" action="/tasks/complete/{{ $task->id }}" method="POST">
                                 @method('PATCH')
                                 @csrf
                                 <button type="submit" class="btn btn-primary">✅ Complete</button>
@@ -54,6 +54,21 @@
                 cursor: "grab",
                 start: function(event, ui) {
                     $(this).css("cursor", "grabbing");
+                    $(".task-list").css("position", "relative").append(
+                        '<div class="overlay">Drop here to change the priority</div>');
+
+                    $(".overlay").css({
+                        position: "absolute",
+                        top: 0,
+                        left: 0,
+                        width: "100%",
+                        height: "100%",
+                        background: "rgba(211, 211, 211, 0.7)",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        fontSize: "18px"
+                    });
                 },
                 stop: function(event, ui) {
                     $(this).css("cursor", "grab");

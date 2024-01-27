@@ -1,7 +1,5 @@
 @extends('layouts.app')
-@php
-    echo $task;
-@endphp
+
 @section('content')
     @if ($errors->any())
         <div class="alert alert-danger" role="alert">
