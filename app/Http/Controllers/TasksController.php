@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Project;
 use App\Models\Task;
-use Illuminate\Http\Request;
 
 class TasksController extends Controller
 {
@@ -12,6 +11,12 @@ class TasksController extends Controller
     {
         $projects = Project::all();
         $tasks = Task::orderBy('completed_at')->get();
+        $targetProjectId = request('project_id');
+        if ($targetProjectId !== null) {
+            $tasks = $tasks->filter(function ($task) use ($targetProjectId) {
+                return $task->project_id == $targetProjectId;
+            });
+        }
 
         $highPriorityTasks = collect();
         $mediumPriorityTasks = collect();
@@ -32,9 +37,12 @@ class TasksController extends Controller
             'highPriorityTasks' => $highPriorityTasks,
             'mediumPriorityTasks' => $mediumPriorityTasks,
             'lowPriorityTasks' => $lowPriorityTasks,
-            'projects' => $projects
+            'projects' => $projects,
+            'targetProjectId' => $targetProjectId
         ]);
     }
+
+    // public 
 
     public function create()
     {

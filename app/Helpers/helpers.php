@@ -21,8 +21,16 @@ function findProjectById($projects, $targetId)
 
     if ($filteredProjects->isNotEmpty()) {
         $project = $filteredProjects->first();
-        echo "Project found: " . $project->name;
+        echo $project->name;
     } else {
         echo "Project not found.";
     }
+}
+
+
+function filterTasksByProject($tasks, $targetProjectId)
+{
+    return $tasks->filter(function ($task) use ($targetProjectId) {
+        return $task->project_id === $targetProjectId;
+    });
 }

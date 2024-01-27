@@ -1,7 +1,7 @@
 <!-- _task_list.blade.php -->
 
+<h6>{{ getPriorityEmoji(ucfirst($priority))}}{{ ucfirst($priority) }} Priority</h6>
 @if ($tasks->count() > 0)
-    <h6>{{ getPriorityEmoji(ucfirst($priority))}}{{ ucfirst($priority) }} Priority</h6>
     @foreach ($tasks as $task)
         <div class="card border @if ($task->isCompleted()) border-success @endif">
             <div class="card-body d-flex justify-content-between">
@@ -33,6 +33,6 @@
         <br> <!-- Add spacing between each task -->
     @endforeach
 @else
-    <p>No tasks found.</p>
+    <p>No tasks found here.</p>
     <a href="/tasks/create">Create a new task</a>
 @endif
