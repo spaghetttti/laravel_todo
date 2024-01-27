@@ -42,6 +42,16 @@ class TasksController extends Controller
         ]);
     }
 
+    public function find($id)
+    {
+        $task = Task::where('id', $id)->first();
+        $projects = Project::all();
+
+        return view('tasks.task', [
+            'task' => $task,
+            'projects' => $projects
+        ]);
+    }
 
     public function create()
     {
@@ -72,7 +82,7 @@ class TasksController extends Controller
     public function complete($id)
     {
         $task = Task::where('id', $id)->first();
-    
+
         $task->completed_at = now();
         $task->save();
         return redirect('/');
@@ -81,15 +91,15 @@ class TasksController extends Controller
     public function update($id)
     {
         $task = Task::where('id', $id)->first();
-        
+
         if (request()->has('name')) {
             $task->name = request('name');
         }
-    
+
         if (request()->has('priority')) {
             $task->priority = request('priority');
         }
-    
+
         if (request()->has('project_id')) {
             $task->project_id = request('project_id');
         }
