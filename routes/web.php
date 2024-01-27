@@ -25,9 +25,11 @@ Route::get('/',  [TasksController::class, 'index']);
 
 Route::post('/tasks',  [TasksController::class, 'store']);
 
-Route::patch('/tasks/{id}', [TasksController::class, 'update']);
+Route::patch('/tasks/complete/{id}', [TasksController::class, 'complete']);
+
+Route::patch('/tasks/update/{id}', [TasksController::class, 'update']);
 
 Route::delete('/tasks/{id}', [TasksController::class, 'delete']);
 
-Route::get('/tasks/{id}', [TasksController::class, 'delete']);
+Route::get('/tasks/{id}', [TasksController::class, 'find']);
 

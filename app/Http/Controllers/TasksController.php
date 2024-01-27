@@ -42,7 +42,6 @@ class TasksController extends Controller
         ]);
     }
 
-    // public 
 
     public function create()
     {
@@ -70,12 +69,31 @@ class TasksController extends Controller
         return redirect('/');
     }
 
+    public function complete($id)
+    {
+        $task = Task::where('id', $id)->first();
+    
+        $task->completed_at = now();
+        $task->save();
+        return redirect('/');
+    }
+
     public function update($id)
     {
         $task = Task::where('id', $id)->first();
+        
+        if (request()->has('name')) {
+            $task->name = request('name');
+        }
+    
+        if (request()->has('priority')) {
+            $task->priority = request('priority');
+        }
+    
+        if (request()->has('project_id')) {
+            $task->project_id = request('project_id');
+        }
 
-
-        $task->completed_at = now();
         $task->save();
         return redirect('/');
     }

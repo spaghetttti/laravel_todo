@@ -2,12 +2,12 @@
 function getPriorityEmoji($priority)
 {
     switch ($priority) {
-        case 'High':
-            return ' 🔴 ';
-        case 'Medium':
-            return ' 🟡 ';
-        case 'Low':
-            return ' 🟢 ';
+        case '1':
+            return ' 🔴 Hight';
+        case '2':
+            return ' 🟡 Medium';
+        case '3':
+            return ' 🟢 Low';
         default:
             return '';
     }
